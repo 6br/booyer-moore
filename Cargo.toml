@@ -1,0 +1,7 @@
+[package]
+name = "boyer-moore"
+version = "0.1.0"
+authors = ["Mac <Mac@localhost>"]
+
+[dependencies]
+rand = "*"
