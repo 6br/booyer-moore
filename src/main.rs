@@ -56,7 +56,6 @@ mod tests{
 
     #[bench]
     fn bench_brutefore_100000(b: &mut Bencher) {
-        //let seed = "UACCUA".as_bytes();
         let seed = "UACCUAACCCAAUUUUUUUUUAA".as_bytes();
         let target = &generate_random_sequence(100000);
         let target2 = target.as_bytes();
@@ -67,7 +66,6 @@ mod tests{
 
     #[bench]
     fn bench_brutefore_break_100000(b: &mut Bencher) {
-        //let seed = "UACCUA".as_bytes();
         let seed = "UACCUAACCCAAUUUUUUUUUAA".as_bytes();
         let target = &generate_random_sequence(100000);
         let target2 = target.as_bytes();
@@ -82,7 +80,6 @@ fn generate_random_sequence(length: i32) -> String {
     let mut rng = rand::thread_rng();
     let id: String = (0..length).map(|_| *rng.choose(&CHARS).unwrap() as char)
         .collect();
-    //println!("{}", id);
     return id;
 }
 
@@ -104,16 +101,10 @@ fn bm_search(target: &[u8], seed: &[u8], table: HashMap<&u8, usize>) -> i64 {
         while target[i+j] == seed[j] && j>0 {
             j -= 1;
         }
-        //while i>0 {
-            //j-=1
-        //}
-
-        //println!("{} {}", i, j);
         if j == 0 && target[i] == seed[0] {
             counter += 1;
             i += 1;
         } else {
-            //println!("{}", table.get(&target[i+j]).unwrap());
             i += match table.get(&target[i+j]) {
                 Some(value) => m - *value,
                 None => m
@@ -132,7 +123,6 @@ fn bruteforce(target: &[u8], seed: &[u8]) -> i64 {
         for j in 0..m {
             if target[i+j] != seed[j] {
                 boolean = false;
-                //break;
             }
         }
         if boolean {
